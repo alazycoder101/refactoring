@@ -30,14 +30,14 @@ def statement(invoice, plays)
         thisAmount += 300 * perf.audience
       else
         raise "unknown type: #{play.type}"
-        # add volume credits
-        volumeCredits += [perf.audience - 30, 0].max
-        # add extra credit for every ten comedy attendees
-        volumeCredits += (perf.audience / 5.0).floor if "comedy" === play.type
-        # print line for this order
-        result += "#{play.name}: #{thisAmount / 100.0} (#{perf.audience} seats)\n\t"
-        totalAmount += thisAmount
       end
+      # add volume credits
+      volumeCredits += [perf.audience - 30, 0].max
+      # add extra credit for every ten comedy attendees
+      volumeCredits += (perf.audience / 5.0).floor if "comedy" === play.type
+      # print line for this order
+      result += "#{play.name}: #{thisAmount / 100.0} (#{perf.audience} seats)\n\t"
+      totalAmount += thisAmount
     end
     result += "Amount owed is #{(totalAmount / 100.0)}\n"
     result += "You earned #{volumeCredits} credits\n"
